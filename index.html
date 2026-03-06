@@ -29,107 +29,106 @@
     body { font-family: 'Inter', sans-serif; color: #222222; }
     h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
 
-    /* Nav scroll effect */
     #navbar { transition: background 0.3s, box-shadow 0.3s; }
     #navbar.scrolled { background: rgba(255,255,255,0.98) !important; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
 
-    /* Hero */
     .hero-bg {
       background-image: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.08) 100%), url('assets/images/hero.png');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
     }
-
     @media (max-width: 768px) {
-      .hero-bg {
-        background-size: cover;
-        background-position: 47.5% center;
-      }
-
-      .trust-item {
-        flex-direction: column;
-        gap: 0.35rem;
-        text-align: center;
-      }
+      .hero-bg { background-position: 47.5% center; }
+      .trust-item { flex-direction: column; gap: 0.35rem; text-align: center; }
     }
 
-    /* Trust strip gradient */
     .trust-strip { background: linear-gradient(135deg, #1F6F73 0%, #155457 100%); }
     .trust-item { min-height: 56px; }
     .trust-item span { line-height: 1.25; }
 
-    /* Gallery images */
     .gallery-item { overflow: hidden; border-radius: 1rem; }
     .gallery-item img { transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); width: 100%; height: 100%; object-fit: cover; }
     .gallery-item:hover img { transform: scale(1.04); }
 
-    /* Card hover */
+    /* Service cards — taller image */
     .service-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(31,111,115,0.15); }
+    .service-card .card-img { height: 230px; }
+    @media (min-width: 1024px) { .service-card .card-img { height: 250px; } }
 
-    /* CTA glow */
     .btn-teal { background: #1F6F73; transition: background 0.2s, box-shadow 0.2s, transform 0.15s; }
     .btn-teal:hover { background: #155457; box-shadow: 0 8px 24px rgba(31,111,115,0.4); transform: translateY(-2px); }
 
-    .btn-outline { border: 2px solid #1F6F73; color: #1F6F73; transition: all 0.2s; }
-    .btn-outline:hover { background: #1F6F73; color: white; transform: translateY(-2px); }
+    /* CTA white buttons */
+    .btn-cta-primary { background: white; color: #155457; font-weight: 700; transition: all 0.2s; }
+    .btn-cta-primary:hover { background: #f0f9f9; box-shadow: 0 8px 28px rgba(0,0,0,0.18); transform: translateY(-2px); }
+    .btn-cta-outline { border: 2px solid rgba(255,255,255,0.6); color: white; transition: all 0.2s; }
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.12); border-color: white; transform: translateY(-2px); }
 
-    /* Section fade-in */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    /* Checklist icon */
-    .check-item::before { content: ''; display: inline-block; }
-
-    /* Divider accent */
     .section-label { letter-spacing: 0.15em; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: #1F6F73; }
 
-    /* Mobile menu */
     #mobile-menu { display: none; }
     #mobile-menu.open { display: block; }
 
-    /* Testimonial card */
-    .testimonial-card { background: white; border-left: 4px solid #1F6F73; }
+    /* Testimonials — improved */
+    .testimonial-card {
+      background: white;
+      border-top: 4px solid #1F6F73;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(31,111,115,0.13); }
+    .testimonial-card .quote-mark {
+      font-size: 5rem;
+      line-height: 1;
+      color: #1F6F73;
+      opacity: 0.1;
+      font-family: Georgia, serif;
+      position: absolute;
+      top: 0.75rem;
+      left: 1.5rem;
+      pointer-events: none;
+      user-select: none;
+    }
 
-    /* Footer */
     .footer-bg { background: #111e1e; }
   </style>
 </head>
 <body class="bg-white">
 
-  <!-- ===================== NAVBAR ===================== -->
+  <!-- NAVBAR -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm" style="box-shadow: 0 1px 0 rgba(0,0,0,0.07);">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-0.5 group">
+      <a href="#" class="flex items-center gap-0.5">
         <img src="assets/images/logobc.png" alt="Coast BC Painting logo" class="h-12 md:h-14 w-auto" />
         <div>
-          <div class="font-heading font-700 text-[15px] leading-tight text-ink" style="font-weight:700;">Coast BC Painting</div>
+          <div class="font-heading text-[15px] leading-tight text-ink" style="font-weight:700;">Coast BC Painting</div>
           <div class="text-[10px] font-medium text-gray-400 tracking-widest uppercase">Inc.</div>
         </div>
       </a>
-
-      <!-- Desktop nav -->
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
         <li><a href="#services" class="hover:text-teal transition-colors">Services</a></li>
         <li><a href="#gallery" class="hover:text-teal transition-colors">Projects</a></li>
         <li><a href="#service-area" class="hover:text-teal transition-colors">Service Area</a></li>
         <li><a href="#contact" class="hover:text-teal transition-colors">Contact</a></li>
       </ul>
-
       <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden md:inline-flex btn-teal text-white text-sm font-semibold px-5 py-2.5 rounded-full font-heading">
-          Get Free Estimate
-        </a>
-        <!-- Hamburger -->
+        <a href="#contact" class="hidden md:inline-flex btn-teal text-white text-sm font-semibold px-5 py-2.5 rounded-full font-heading">Get Free Estimate</a>
         <button id="hamburger" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition" aria-label="Menu">
           <svg id="icon-open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
           <svg id="icon-close" class="hidden" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
     </div>
-    <!-- Mobile menu -->
     <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-5 py-4 space-y-3">
       <a href="#services" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal" onclick="closeMobile()">Services</a>
       <a href="#gallery" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal" onclick="closeMobile()">Projects</a>
@@ -139,7 +138,7 @@
     </div>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
+  <!-- HERO -->
   <section class="hero-bg min-h-[72vh] md:min-h-[88vh] flex items-center pt-20">
     <div class="max-w-7xl mx-auto px-5 py-14 md:py-24">
       <div class="max-w-xl md:max-w-2xl fade-in">
@@ -163,7 +162,7 @@
     </div>
   </section>
 
-  <!-- ===================== TRUST STRIP ===================== -->
+  <!-- TRUST STRIP -->
   <section class="trust-strip py-5">
     <div class="max-w-7xl mx-auto px-5">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-y-4 text-center">
@@ -187,7 +186,7 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICES ===================== -->
+  <!-- SERVICES -->
   <section id="services" class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-5">
       <div class="text-center mb-10 md:mb-16 fade-in">
@@ -195,14 +194,12 @@
         <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-4">Our Services</h2>
         <p class="text-gray-500 max-w-xl mx-auto text-lg">Interior, exterior, epoxy floor, and pressure washing services for homes and businesses across Surrey and the Lower Mainland.</p>
       </div>
-
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Card 1 -->
-        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in">
-          <div class="h-48 overflow-hidden">
-            <img src="assets/images/interior.png" alt="Interior Painting" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in flex flex-col">
+          <div class="card-img overflow-hidden flex-shrink-0">
+            <img src="assets/images/interior.png" alt="Interior Painting" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5 md:p-6">
+          <div class="p-6 flex flex-col flex-1">
             <div class="w-10 h-10 rounded-xl mb-4 flex items-center justify-center" style="background:#e8f4f5">
               <svg width="20" height="20" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
@@ -210,13 +207,11 @@
             <p class="text-gray-500 text-sm leading-relaxed">Transform the look of your home with clean, professional interior painting. We handle walls, ceilings, trim, and full interior repaints.</p>
           </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in">
-          <div class="h-48 overflow-hidden">
-            <img src="assets/images/exterior.png" alt="Exterior Painting" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in flex flex-col">
+          <div class="card-img overflow-hidden flex-shrink-0">
+            <img src="assets/images/exterior.png" alt="Exterior Painting" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5 md:p-6">
+          <div class="p-6 flex flex-col flex-1">
             <div class="w-10 h-10 rounded-xl mb-4 flex items-center justify-center" style="background:#e8f4f5">
               <svg width="20" height="20" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
             </div>
@@ -224,13 +219,11 @@
             <p class="text-gray-500 text-sm leading-relaxed">Protect and refresh your home's exterior with high-quality paint and professional preparation for lasting curb appeal.</p>
           </div>
         </div>
-
-        <!-- Card 3 -->
-        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in">
-          <div class="h-48 overflow-hidden">
-            <img src="assets/images/epoxyfloors.png" alt="Epoxy Floors" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in flex flex-col">
+          <div class="card-img overflow-hidden flex-shrink-0">
+            <img src="assets/images/epoxyfloors.png" alt="Epoxy Floors" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5 md:p-6">
+          <div class="p-6 flex flex-col flex-1">
             <div class="w-10 h-10 rounded-xl mb-4 flex items-center justify-center" style="background:#e8f4f5">
               <svg width="20" height="20" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
             </div>
@@ -238,13 +231,11 @@
             <p class="text-gray-500 text-sm leading-relaxed">Durable and modern epoxy floor coatings for garages, basements, and commercial spaces that look great and last.</p>
           </div>
         </div>
-
-        <!-- Card 4 -->
-        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in">
-          <div class="h-48 overflow-hidden">
-            <img src="assets/images/pressurewash.png" alt="Pressure Washing" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        <div class="service-card bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 fade-in flex flex-col">
+          <div class="card-img overflow-hidden flex-shrink-0">
+            <img src="assets/images/pressurewash.png" alt="Pressure Washing" class="w-full h-full object-cover" />
           </div>
-          <div class="p-5 md:p-6">
+          <div class="p-6 flex flex-col flex-1">
             <div class="w-10 h-10 rounded-xl mb-4 flex items-center justify-center" style="background:#e8f4f5">
               <svg width="20" height="20" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             </div>
@@ -256,7 +247,7 @@
     </div>
   </section>
 
-  <!-- ===================== GALLERY ===================== -->
+  <!-- GALLERY -->
   <section id="gallery" class="py-16 md:py-24" style="background:#F7F7F7">
     <div class="max-w-7xl mx-auto px-5">
       <div class="text-center mb-10 md:mb-14 fade-in">
@@ -264,7 +255,6 @@
         <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-4">Recent Work</h2>
         <p class="text-gray-500 max-w-lg mx-auto text-lg">Take a look at some of our recent painting projects across Surrey and the Lower Mainland.</p>
       </div>
-
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 fade-in">
         <div class="gallery-item aspect-[4/5] sm:h-64 sm:col-span-2 md:col-span-1 md:aspect-[4/3] md:h-auto">
           <img src="assets/images/project/web/project3.HEIC.png" alt="Painting project" />
@@ -288,78 +278,48 @@
     </div>
   </section>
 
-  <!-- ===================== WHY CHOOSE US ===================== -->
+  <!-- WHY CHOOSE US -->
   <section class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-5">
       <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-        <!-- Image -->
         <div class="relative fade-in order-2 md:order-1">
           <div class="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
             <img src="assets/images/trusthero.png" alt="Painting crew at work" class="w-full h-full object-cover" />
           </div>
-          <!-- Badge -->
           <div class="absolute bottom-3 right-3 md:-bottom-5 md:-right-5 bg-white rounded-2xl shadow-xl px-4 py-2 md:px-6 md:py-4 flex items-center gap-2 md:gap-4 border border-gray-100">
             <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center" style="background:#1F6F73">
-              <svg width="18" height="18" class="md:w-[22px] md:h-[22px]" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              <svg width="18" height="18" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
             </div>
             <div>
-              <div class="font-heading font-bold text-lg md:text-xl text-ink leading-none md:leading-tight">5-Year</div>
+              <div class="font-heading font-bold text-lg md:text-xl text-ink leading-none">5-Year</div>
               <div class="text-xs text-gray-500 font-medium">Touch-Up Guarantee</div>
             </div>
           </div>
         </div>
-
-        <!-- Content -->
         <div class="fade-in order-1 md:order-2">
           <div class="section-label mb-3">Why Coast BC Painting</div>
           <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-6">Built on Quality,<br/>Backed by Trust</h2>
           <p class="text-gray-500 text-base md:text-lg mb-8 leading-relaxed">We take pride in every project — from prep work to the final coat. Here's what sets us apart from other painting contractors.</p>
-
-          <ul class="space-y-4">
+          <ul class="space-y-5">
             <li class="flex items-start gap-4">
-              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5">
-                <svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <span class="font-heading font-semibold text-ink">6+ years experience</span>
-                <p class="text-gray-500 text-sm mt-0.5">Years of hands-on experience delivering exceptional results across the Lower Mainland.</p>
-              </div>
+              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5"><svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><span class="font-heading font-semibold text-ink">Experienced painters since 2020</span><p class="text-gray-500 text-sm mt-0.5">Hands-on experience delivering exceptional results across the Lower Mainland.</p></div>
             </li>
             <li class="flex items-start gap-4">
-              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5">
-                <svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <span class="font-heading font-semibold text-ink">Licensed and fully insured</span>
-                <p class="text-gray-500 text-sm mt-0.5">You can trust that every job is carried out safely, professionally, and with full coverage.</p>
-              </div>
+              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5"><svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><span class="font-heading font-semibold text-ink">Licensed and fully insured</span><p class="text-gray-500 text-sm mt-0.5">Every job is carried out safely, professionally, and with full coverage.</p></div>
             </li>
             <li class="flex items-start gap-4">
-              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5">
-                <svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <span class="font-heading font-semibold text-ink">Clean and respectful work environment</span>
-                <p class="text-gray-500 text-sm mt-0.5">We protect your home and leave every space cleaner than we found it.</p>
-              </div>
+              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5"><svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><span class="font-heading font-semibold text-ink">Clean and respectful work environment</span><p class="text-gray-500 text-sm mt-0.5">We protect your home and leave every space cleaner than we found it.</p></div>
             </li>
             <li class="flex items-start gap-4">
-              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5">
-                <svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <span class="font-heading font-semibold text-ink">Free estimates with honest pricing</span>
-                <p class="text-gray-500 text-sm mt-0.5">No hidden fees. We give you a clear, fair quote before any work begins.</p>
-              </div>
+              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5"><svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><span class="font-heading font-semibold text-ink">Free estimates with honest pricing</span><p class="text-gray-500 text-sm mt-0.5">No hidden fees. We give you a clear, fair quote before any work begins.</p></div>
             </li>
             <li class="flex items-start gap-4">
-              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5">
-                <svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <span class="font-heading font-semibold text-ink">5-year touch-up guarantee</span>
-                <p class="text-gray-500 text-sm mt-0.5">1 free touch-up within 5 years of job completion — because we stand by our work.</p>
-              </div>
+              <div class="w-6 h-6 rounded-full flex-shrink-0 mt-0.5 flex items-center justify-center" style="background:#e8f4f5"><svg width="13" height="13" fill="none" stroke="#1F6F73" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div><span class="font-heading font-semibold text-ink">5-year touch-up guarantee</span><p class="text-gray-500 text-sm mt-0.5">1 free touch-up within 5 years of job completion — because we stand by our work.</p></div>
             </li>
           </ul>
         </div>
@@ -367,73 +327,91 @@
     </div>
   </section>
 
-  <!-- ===================== TESTIMONIALS ===================== -->
+  <!-- TESTIMONIALS — REDESIGNED -->
   <section class="py-16 md:py-24" style="background:#F7F7F7">
-    <div class="max-w-4xl mx-auto px-5 text-center fade-in">
-      <div class="section-label mb-3">Client Reviews</div>
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-12">What Our Clients Say</h2>
-      <div class="inline-flex items-center gap-2 rounded-full border border-teal/15 bg-white px-4 py-2 text-sm font-medium text-ink shadow-sm mb-10">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span><strong>5.0 Google Review</strong> · Based on customer feedback</span>
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-12 fade-in">
+        <div class="section-label mb-3">Client Reviews</div>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-5">What Our Clients Say</h2>
+        <div class="inline-flex items-center gap-3 bg-white rounded-2xl shadow-sm border border-gray-100 px-5 py-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <div class="flex gap-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="font-heading font-bold text-ink text-sm">5.0</span>
+          <span class="text-gray-400 text-sm">· Google Reviews</span>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 text-left">
-        <div class="testimonial-card rounded-3xl shadow-lg p-6 md:p-8 h-full">
-          <div class="flex gap-1 mb-6">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <div class="grid md:grid-cols-3 gap-6 fade-in">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="flex gap-1 mb-4 relative z-10">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6">
+          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6 flex-1 relative z-10">
             "The results were amazing. The colors were perfectly matched and the finish was flawless. The crew was punctual, friendly, and respectful of my home."
           </blockquote>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background:#1F6F73">P</div>
+          <div class="flex items-center gap-3 mt-auto relative z-10">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm flex-shrink-0" style="background:#1F6F73">P</div>
             <div>
               <div class="font-heading font-semibold text-ink text-sm">Prabujjj</div>
-              <div class="text-gray-400 text-xs">Google Review</div>
+              <div class="text-gray-400 text-xs mt-0.5">Google Review</div>
             </div>
           </div>
         </div>
 
-        <div class="testimonial-card rounded-3xl shadow-lg p-6 md:p-8 h-full">
-          <div class="flex gap-1 mb-6">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="flex gap-1 mb-4 relative z-10">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6">
+          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6 flex-1 relative z-10">
             "Coast BC Painting was easy to work with from quote to cleanup. Our living room and kitchen look brand new, and they finished right on schedule."
           </blockquote>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background:#1F6F73">A</div>
+          <div class="flex items-center gap-3 mt-auto relative z-10">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm flex-shrink-0" style="background:#1F6F73">A</div>
             <div>
               <div class="font-heading font-semibold text-ink text-sm">Amandeep K.</div>
-              <div class="text-gray-400 text-xs">Google Review</div>
+              <div class="text-gray-400 text-xs mt-0.5">Google Review</div>
             </div>
           </div>
         </div>
 
-        <div class="testimonial-card rounded-3xl shadow-lg p-6 md:p-8 h-full">
-          <div class="flex gap-1 mb-6">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <div class="flex gap-1 mb-4 relative z-10">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6">
+          <blockquote class="text-ink text-base leading-relaxed font-medium mb-6 flex-1 relative z-10">
             "We booked them for exterior painting and pressure washing before listing our home. Great communication, clean work, and a really professional finish."
           </blockquote>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm" style="background:#1F6F73">N</div>
+          <div class="flex items-center gap-3 mt-auto relative z-10">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center font-heading font-bold text-white text-sm flex-shrink-0" style="background:#1F6F73">N</div>
             <div>
               <div class="font-heading font-semibold text-ink text-sm">Navpreet S.</div>
-              <div class="text-gray-400 text-xs">Google Review</div>
+              <div class="text-gray-400 text-xs mt-0.5">Google Review</div>
             </div>
           </div>
         </div>
@@ -441,7 +419,7 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICE AREA ===================== -->
+  <!-- SERVICE AREA -->
   <section id="service-area" class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-5">
       <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
@@ -449,48 +427,18 @@
           <div class="section-label mb-3">Coverage</div>
           <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-5">Serving Surrey &amp; the Lower Mainland</h2>
           <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-8">Based in Surrey, we serve homeowners and businesses across the Lower Mainland and take select projects on Vancouver Island.</p>
-
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Surrey</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Langley</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Delta</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Burnaby</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Richmond</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Coquitlam</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">Vancouver</span>
-            </div>
-            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-sm font-medium text-ink">White Rock</span>
-            </div>
-            <div class="flex items-center gap-2 rounded-xl px-4 py-3" style="background:#e8f4f5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <span class="text-sm font-medium" style="color:#1F6F73">+ Vancouver Island</span>
-            </div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Surrey</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Langley</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Delta</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Burnaby</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Richmond</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Coquitlam</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">Vancouver</span></div>
+            <div class="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm font-medium text-ink">White Rock</span></div>
+            <div class="flex items-center gap-2 rounded-xl px-4 py-3" style="background:#e8f4f5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F6F73" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="text-sm font-medium" style="color:#1F6F73">+ Vancouver Island</span></div>
           </div>
         </div>
-
-        <!-- Map visual -->
         <div class="fade-in">
           <div class="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
             <img src="assets/images/bc.png" alt="British Columbia landscape" class="w-full h-full object-cover" />
@@ -500,13 +448,11 @@
     </div>
   </section>
 
-  <!-- ===================== FINAL CTA ===================== -->
+  <!-- FINAL CTA — WHITE BUTTONS -->
   <section id="contact" class="py-20 md:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #1F6F73 0%, #155457 100%);">
-    <!-- Background texture -->
     <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,<svg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 40 40&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;1&quot; height=&quot;40&quot; fill=&quot;white&quot;/><rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;40&quot; height=&quot;1&quot; fill=&quot;white&quot;/></svg>');"></div>
-    
     <div class="max-w-3xl mx-auto px-5 text-center relative fade-in">
-      <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-widest" style="background:rgba(230,222,156,0.2); color:#E6DE9C;">
+      <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-widest" style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.9);">
         Free Estimates Available
       </div>
       <h2 class="font-heading font-bold text-3xl md:text-5xl text-white mb-6">Ready to Refresh Your Home or Business?</h2>
@@ -514,11 +460,11 @@
         Get a free estimate for interior painting, exterior painting, epoxy floors, or pressure washing in Surrey and the Lower Mainland.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="tel:+1-672-272-5444" class="inline-flex items-center justify-center gap-2 font-heading font-semibold text-base px-8 py-4 rounded-full transition-all duration-200 hover:shadow-xl" style="background:#E6DE9C; color:#155457; hover:transform:translateY(-2px)">
+        <a href="tel:+16722725444" class="btn-cta-primary inline-flex items-center justify-center gap-2 font-heading text-base px-8 py-4 rounded-full shadow-lg">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.74 1.25h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.96a16 16 0 006.13 6.13l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call Now
+          Call (672) 272-5444
         </a>
-        <a href="mailto:gavysingh156@gmail.com" class="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white font-heading font-semibold text-base px-8 py-4 rounded-full hover:bg-white/10 transition-colors">
+        <a href="mailto:gavysingh156@gmail.com" class="btn-cta-outline inline-flex items-center justify-center gap-2 font-heading font-semibold text-base px-8 py-4 rounded-full">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Request Estimate
         </a>
@@ -526,17 +472,14 @@
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer class="footer-bg text-gray-400 pt-12 md:pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-5">
       <div class="grid md:grid-cols-4 gap-10 mb-12">
-        <!-- Brand -->
         <div class="md:col-span-1">
           <div class="flex items-center gap-3 mb-4">
             <img src="assets/images/logobc.png" alt="Coast BC Painting logo" class="h-10 w-auto" />
-            <div>
-              <div class="font-heading font-bold text-white text-sm">Coast BC Painting Inc.</div>
-            </div>
+            <div><div class="font-heading font-bold text-white text-sm">Coast BC Painting Inc.</div></div>
           </div>
           <p class="text-sm leading-relaxed text-gray-500">Licensed and insured painting services for homes and businesses across Surrey, the Lower Mainland, and select Vancouver Island projects.</p>
           <div class="mt-4 flex items-center gap-2">
@@ -544,8 +487,6 @@
             <span class="text-xs text-gray-500">Licensed & Insured</span>
           </div>
         </div>
-
-        <!-- Quick Links -->
         <div>
           <h4 class="font-heading font-semibold text-white text-sm mb-4">Quick Links</h4>
           <ul class="space-y-2 text-sm">
@@ -555,8 +496,6 @@
             <li><a href="#contact" class="hover:text-white transition-colors">Get Estimate</a></li>
           </ul>
         </div>
-
-        <!-- Services -->
         <div>
           <h4 class="font-heading font-semibold text-white text-sm mb-4">Services</h4>
           <ul class="space-y-2 text-sm">
@@ -568,8 +507,6 @@
             <li>Pressure Washing</li>
           </ul>
         </div>
-
-        <!-- Contact -->
         <div>
           <h4 class="font-heading font-semibold text-white text-sm mb-4">Contact</h4>
           <ul class="space-y-3 text-sm">
@@ -588,7 +525,6 @@
           </ul>
         </div>
       </div>
-
       <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
         <span>&copy; 2025 Coast BC Painting Inc. All rights reserved.</span>
         <span>Surrey, British Columbia · Lower Mainland</span>
@@ -596,15 +532,10 @@
     </div>
   </footer>
 
-  <!-- ===================== SCRIPTS ===================== -->
   <script>
-    // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
-    // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     const iconOpen = document.getElementById('icon-open');
@@ -622,22 +553,12 @@
       iconClose.classList.add('hidden');
     }
 
-    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.06 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Stagger children
-    document.querySelectorAll('.grid .fade-in').forEach((el, i) => {
-      el.style.transitionDelay = `${i * 35}ms`;
-    });
+    document.querySelectorAll('.grid .fade-in').forEach((el, i) => { el.style.transitionDelay = `${i * 35}ms`; });
   </script>
 </body>
 </html>
