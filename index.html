@@ -50,6 +50,15 @@
     .gallery-item { overflow: hidden; border-radius: 1rem; }
     .gallery-item img { transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
     .gallery-item:hover img { transform: scale(1.04); }
+    .project-card {
+      border: 1px solid transparent;
+      transition: border-color 0.36s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .project-card:hover {
+      border-color: rgba(31,111,115,0.55);
+      box-shadow: 0 0 0 2px rgba(31,111,115,0.18), 0 14px 28px rgba(31,111,115,0.16);
+    }
+    .project-card:hover img { transform: scale(1.03) !important; }
 
     @media (min-width: 1024px) {
       .gallery-item img,
@@ -57,8 +66,16 @@
     }
 
     /* Service cards — taller image */
-    .service-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(31,111,115,0.15); }
+    .service-card {
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      border: 1px solid #e5e7eb;
+      will-change: transform, box-shadow, border-color;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(31,111,115,0.55);
+      box-shadow: 0 20px 40px rgba(31,111,115,0.18), 0 0 0 2px rgba(31,111,115,0.18);
+    }
     .service-card .card-img { height: 230px; }
     @media (min-width: 1024px) { .service-card .card-img { height: 300px; } }
 
@@ -267,34 +284,28 @@
 
       <!-- ROW 1: Big B&A left (2/3) + 2 stacked right (1/3) -->
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4 fade-in">
-        <div class="relative col-span-2 md:col-span-2 h-64 md:h-[430px] rounded-2xl overflow-hidden group cursor-pointer">
-          <img src="assets/images/upscaled%20images/project1.png" alt="Exterior painting before and after" class="w-full h-full object-cover transition-transform duration-700 md:scale-105 group-hover:scale-110" />
+        <div class="relative col-span-2 md:col-span-2 h-64 md:h-[430px] rounded-2xl overflow-hidden group cursor-pointer project-card">
+          <img src="assets/images/upscaled%20images/project1.png" alt="Exterior painting before and after" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
         </div>
         <div class="col-span-2 md:col-span-1">
-          <div class="relative h-48 md:h-[430px] rounded-2xl overflow-hidden group cursor-pointer">
+          <div class="relative h-48 md:h-[430px] rounded-2xl overflow-hidden group cursor-pointer project-card">
             <img src="assets/images/upscaled%20images/project2.png" alt="Modern painted home exterior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(to top, rgba(0,0,0,0.5), transparent)"></div>
-            <div class="absolute bottom-2.5 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span class="text-white text-[10px] font-semibold uppercase tracking-wider">Exterior Painting</span>
-            </div>
           </div>
         </div>
       </div>
 
       <!-- ROW 2: 3 equal cols -->
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4 fade-in">
-        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project4.png" alt="Freshly painted front door" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(to top, rgba(0,0,0,0.5), transparent)"></div>
-          <div class="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span class="text-white text-[10px] font-semibold uppercase tracking-wider">Door &amp; Trim</span>
-          </div>
         </div>
-        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project5.png" alt="Interior painting before and after" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);"></div>
         </div>
-        <div class="relative col-span-2 md:col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-2 md:col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project6.png" alt="Epoxy floor before and after" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);"></div>
         </div>
@@ -302,21 +313,15 @@
 
       <!-- ROW 3: 2 finished + 1 wide B&A -->
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 fade-in">
-        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project7.png" alt="Rancher home exterior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(to top, rgba(0,0,0,0.5), transparent)"></div>
-          <div class="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span class="text-white text-[10px] font-semibold uppercase tracking-wider">Exterior Painting</span>
-          </div>
         </div>
-        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project8.png" alt="Painted staircase" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(to top, rgba(0,0,0,0.5), transparent)"></div>
-          <div class="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span class="text-white text-[10px] font-semibold uppercase tracking-wider">Interior Painting</span>
-          </div>
         </div>
-        <div class="relative col-span-2 md:col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer">
+        <div class="relative col-span-2 md:col-span-1 h-48 md:h-72 rounded-2xl overflow-hidden group cursor-pointer project-card">
           <img src="assets/images/upscaled%20images/project9.png" alt="Pressure wash before and after" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" />
           <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);"></div>
         </div>
