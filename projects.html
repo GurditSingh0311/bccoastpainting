@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Coast BC Painting Inc.</title>
+  <link rel="icon" type="image/webp" href="assets/images/optimized/coastbcFavicon.webp" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { teal: { DEFAULT: '#1F6F73', light: '#2a8f94', dark: '#155457' }, cream: '#E6DE9C', ink: '#222222' },
+          fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #222222; }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
+    #navbar { transition: background 0.3s, box-shadow 0.3s; }
+    #navbar.scrolled { background: rgba(255,255,255,0.98) !important; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+    .inner-hero-bg {
+      background-image: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.2) 100%), url('assets/images/optimized/upscaled%20images/project1.webp');
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+    }
+    .project-card { border: 1px solid transparent; border-radius: 1rem; overflow: hidden; transition: border-color 0.36s cubic-bezier(0.22,1,0.36,1), box-shadow 0.36s cubic-bezier(0.22,1,0.36,1); }
+    .project-card:hover { border-color: rgba(31,111,115,0.55); box-shadow: 0 0 0 2px rgba(31,111,115,0.18), 0 14px 28px rgba(31,111,115,0.16); }
+    .project-card:hover img { transform: scale(1.04) !important; }
+    .btn-teal { background: #1F6F73; transition: background 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .btn-teal:hover { background: #155457; box-shadow: 0 8px 24px rgba(31,111,115,0.4); transform: translateY(-2px); }
+    .btn-cta-primary { background: white; color: #155457; font-weight: 700; transition: all 0.2s; }
+    .btn-cta-primary:hover { background: #f0f9f9; box-shadow: 0 8px 28px rgba(0,0,0,0.18); transform: translateY(-2px); }
+    .btn-cta-outline { border: 2px solid rgba(255,255,255,0.6); color: white; transition: all 0.2s; }
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.12); border-color: white; transform: translateY(-2px); }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .section-label { letter-spacing: 0.15em; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; color: #1F6F73; }
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+    .trust-strip { background: linear-gradient(135deg, #1F6F73 0%, #155457 100%); }
+    .footer-bg { background: #111e1e; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm" style="box-shadow: 0 1px 0 rgba(0,0,0,0.07);">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-0.5">
+        <img src="assets/images/optimized/logobc.webp" alt="Coast BC Painting logo" class="h-12 md:h-14 w-auto" />
+        <div>
+          <div class="font-heading text-[15px] leading-tight text-ink" style="font-weight:700;">Coast BC Painting</div>
+          <div class="text-[10px] font-medium text-gray-400 tracking-widest uppercase">Inc.</div>
+        </div>
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <li><a href="index.html" class="hover:text-teal transition-colors">Home</a></li>
+        <li><a href="projects.html" class="text-teal font-semibold transition-colors">Projects</a></li>
+        <li><a href="about.html" class="hover:text-teal transition-colors">About</a></li>
+        <li><a href="contact.html" class="hover:text-teal transition-colors">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="hidden md:inline-flex btn-teal text-white text-sm font-semibold px-5 py-2.5 rounded-full font-heading">Get Free Estimate</a>
+        <button id="hamburger" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition" aria-label="Menu">
+          <svg id="icon-open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <svg id="icon-close" class="hidden" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-5 py-4 space-y-3">
+      <a href="index.html" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal" onclick="closeMobile()">Home</a>
+      <a href="projects.html" class="block py-2 text-sm font-medium text-teal font-semibold" onclick="closeMobile()">Projects</a>
+      <a href="about.html" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal" onclick="closeMobile()">About</a>
+      <a href="contact.html" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal" onclick="closeMobile()">Contact</a>
+      <a href="contact.html" class="block btn-teal text-white text-sm font-semibold px-5 py-3 rounded-full text-center font-heading mt-2" onclick="closeMobile()">Get Free Estimate</a>
+    </div>
+  </nav>
+
+  <!-- INNER HERO -->
+  <section class="inner-hero-bg min-h-[46vh] md:min-h-[52vh] flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-5 py-14 md:py-20">
+      <div class="max-w-2xl fade-in">
+        <div class="section-label text-white/70 mb-4">Portfolio</div>
+        <h1 class="font-heading font-extrabold text-white text-3xl sm:text-4xl md:text-5xl leading-tight mb-5">Recent Painting Projects</h1>
+        <p class="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg">Real painting, epoxy floor, and pressure washing work completed across Surrey and the Lower Mainland.</p>
+        <a href="contact.html" class="btn-teal text-white font-heading font-semibold text-sm md:text-base px-7 py-3.5 rounded-full inline-flex items-center gap-2">
+          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.74 1.25h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.96a16 16 0 006.13 6.13l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Get a Free Estimate
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-14 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl fade-in">
+        <div class="section-label mb-3">Portfolio</div>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-ink mb-5">Work That Speaks For Itself</h2>
+        <p class="text-gray-500 text-base md:text-lg leading-relaxed">From interior refreshes to exterior repaints, epoxy floors, and pressure washing, we focus on clean finishes, proper prep, and results that last.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT GALLERY -->
+  <section class="pb-16 md:pb-24" style="background:#F7F7F7">
+    <div class="max-w-7xl mx-auto px-5 pt-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 fade-in">
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project1.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project2.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project4.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project5.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project6.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/IMG_0053.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/IMG_1694.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/IMG_1698.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/imagen.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project11.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project12.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project13.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project18.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project20.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project21.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project212.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project22.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project23.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project25.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project26.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project27.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project28.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project3.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project34.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project44.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project444.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project55.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project7.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project8.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project88.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project9.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project93.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+        <div class="relative aspect-[4/3] md:aspect-[5/4] project-card group cursor-pointer"><img src="assets/images/optimized/upscaled%20images/project99.webp" alt="Project photo" class="w-full h-full object-cover object-center transition-transform duration-700" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip py-8">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-3 py-2 md:border-r border-white/20">
+          <svg width="22" height="22" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="text-white font-heading font-semibold text-sm">Licensed &amp; Insured</span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-3 py-2 md:border-r border-white/20">
+          <svg width="22" height="22" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span class="text-white font-heading font-semibold text-sm">Free Estimates</span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-3 py-2 md:border-r border-white/20">
+          <svg width="22" height="22" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <span class="text-white font-heading font-semibold text-sm">5-Year Touch-Up Guarantee</span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-3 py-2">
+          <svg width="22" height="22" fill="none" stroke="#E6DE9C" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="text-white font-heading font-semibold text-sm">Serving Lower Mainland</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #1F6F73 0%, #155457 100%);">
+    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,<svg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 40 40&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;1&quot; height=&quot;40&quot; fill=&quot;white&quot;/><rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;40&quot; height=&quot;1&quot; fill=&quot;white&quot;/></svg>');"></div>
+    <div class="max-w-3xl mx-auto px-5 text-center relative fade-in">
+      <h2 class="font-heading font-bold text-3xl md:text-5xl text-white mb-6">Ready to Refresh Your Property?</h2>
+      <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto">If you're planning interior painting, exterior painting, epoxy flooring, or pressure washing, contact Coast BC Painting for a free estimate.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+16722725444" class="btn-cta-primary inline-flex items-center justify-center gap-2 font-heading text-base px-8 py-4 rounded-full shadow-lg">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.74 1.25h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.96a16 16 0 006.13 6.13l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Now
+        </a>
+        <a href="mailto:gavysingh156@gmail.com" class="btn-cta-outline inline-flex items-center justify-center gap-2 font-heading font-semibold text-base px-8 py-4 rounded-full">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Request Estimate
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-bg text-gray-400 pt-12 md:pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-3 mb-4"><img src="assets/images/optimized/logobc.webp" alt="Coast BC Painting logo" class="h-10 w-auto" /><div><div class="font-heading font-bold text-white text-sm">Coast BC Painting Inc.</div></div></div>
+          <p class="text-sm leading-relaxed text-gray-500">Licensed and insured painting services for homes and businesses across Surrey, the Lower Mainland, and select Vancouver Island projects.</p>
+          <div class="mt-4 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400 inline-block"></span><span class="text-xs text-gray-500">Licensed & Insured</span></div>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="projects.html" class="hover:text-white transition-colors">Projects</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Get Estimate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm mb-4">Services</h4>
+          <ul class="space-y-2 text-sm"><li>Interior Painting</li><li>Exterior Painting</li><li>Residential Painting</li><li>Commercial Painting</li><li>Epoxy Floors</li><li>Pressure Washing</li></ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2"><svg class="mt-0.5 flex-shrink-0" width="14" height="14" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Surrey, British Columbia</span></li>
+            <li class="flex items-center gap-2"><svg class="flex-shrink-0" width="14" height="14" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.74 1.25h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.96a16 16 0 006.13 6.13l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+16722725444" class="hover:text-white transition-colors">(672) 272-5444</a></li>
+            <li class="flex items-center gap-2"><svg class="flex-shrink-0" width="14" height="14" fill="none" stroke="#1F6F73" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:gavysingh156@gmail.com" class="hover:text-white transition-colors">gavysingh156@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
+        <span>&copy; 2025 Coast BC Painting Inc. All rights reserved.</span>
+        <span>Surrey, British Columbia · Lower Mainland</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); iconOpen.classList.toggle('hidden'); iconClose.classList.toggle('hidden'); });
+    function closeMobile() { mobileMenu.classList.remove('open'); iconOpen.classList.remove('hidden'); iconClose.classList.add('hidden'); }
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
